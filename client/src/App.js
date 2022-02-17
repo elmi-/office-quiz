@@ -8,7 +8,7 @@ function App() {
     fetch("/quote")
     .then((res) => res.json())
     .then((data) => {
-      setData(data.quote.data.content)
+      setData(data.quote.content)
     });
   }, []);
 
