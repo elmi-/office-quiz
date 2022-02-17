@@ -1,12 +1,19 @@
 // server/index.js
 const express = require("express");
+const axios  = require("axios");
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.json({ message: "Hello from server!" });
+app.get("/quote", (req, res) => {
+  axios.get("https://officeapi.dev/api/quotes/random")
+  .then(response => {
+    res.json({ quote: response.data })
+  })
+  .catch(error => {
+    console.log(error);
+  });
 });
 
 app.listen(PORT, () => {
