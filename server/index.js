@@ -1,6 +1,6 @@
 // server/index.js
 const express = require("express");
-const { getQuote } = require("./helpers/quotes");
+const { getQuote } = require("./helpers");
 
 const PORT = process.env.PORT || 3001;
 
