@@ -8,5 +8,4 @@ const getQuote = axios.get("https://officeapi.dev/api/quotes/random")
     console.log(error);
   });  
 
-
 module.exports = { getQuote }
