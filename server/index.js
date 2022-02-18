@@ -8,7 +8,7 @@ const app = express();
 
 app.get("/quote", (req, res) => {
   getQuote.then(response => {
-    res.json({ quote: response.data })
+    res.json({ quote: response })
   });
 });
 
