@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{background: 'url(https://picsum.photos/700/?blur=1)'}}>
+    <div className="App" style={{background: 'url(https://picsum.photos/700/?blur=3)'}}>
       <header className="App-header">
         <p>{!quote ? "Loading..." : quote}</p>
       </header>
