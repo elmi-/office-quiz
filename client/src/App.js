@@ -33,17 +33,14 @@ function App() {
       getData();
       return;
     }
-    if(losses !== 0 || wins !== 0) {
-      setLosses(losses + 1)
-      setWins(wins - 1)
-    }
+    setLosses(losses + 1)
     alert("wrong, try again!")
   }
 
   return (
     <div className="App" style={{background: 'url(https://picsum.photos/700/?blur=3)'}}>
       <header className="App-header">
-        <p>Wins: { wins } | Losses: { losses }</p>
+        <p>Wins: { wins } | Loses: { losses }</p>
         <p>{!quote ? "Loading..." : quote.content}</p> 
       </header>
       <button type="button" onClick={() => validateAnser("good")}>{!quote ? "Start" : quote.character.firstname + " " + quote.character.lastname}</button>
