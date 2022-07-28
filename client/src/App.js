@@ -26,7 +26,9 @@ function App() {
 
   const validateAnser = function(value) {
     if(value === "good") {
-      alert("correct!")
+      alert("correct!");
+      getData();
+      return;
     }
     alert("wrong, try again!")
   }
@@ -38,7 +40,7 @@ function App() {
         <p>{!quote ? "" : quote.character.firstname} {!quote ? "" : quote.character.lastname}</p>
       </header>
       <button type="button" onClick={() => validateAnser("good")}>{!quote ? "Start" : quote.character.firstname + " " + quote.character.lastname}</button>
-      <button type="button" onClick={() => validateAnser("bad")}>{!quote ? "Start" : characters.firstname + " " + characters.lastname}</button>
+      <button type="button" onClick={() => validateAnser("bad")}>{!characters ? "Start" : characters.firstname + " " + characters.lastname}</button>
     </div>
   );
 }
