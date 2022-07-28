@@ -1,16 +1,19 @@
 // server/index.js
 const express = require("express");
 const { getQuote } = require("./helpers");
+const cors = require("cors")
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(cors())
 
 app.get("/api/quote", (req, res) => {
-  getQuote.then(response => {
-    console.log("index.js: button clicked")
-    res.json({ quote: response })
-  });
+  const quotePromise = getQuote();
+  quotePromise.then(response => {
+    res.json({ quote: response.data.data })
+  })
+  console.log(getQuote())
 });
 
 

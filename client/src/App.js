@@ -5,16 +5,7 @@ import "./App.css";
 
 function App() {
   const [quote, setQuote] = useState(null);
-
-  useEffect(() => {
-      axios.get("/api/quote")
-      .then(res => {
-        // console.log("initial load")
-        setQuote(res.data.quote)
-      })
-    .catch(error => console.log(error)) 
-  }, []);
-
+  
   const getData = function() {
     axios.get("/api/quote")
     .then(res => {
@@ -22,6 +13,10 @@ function App() {
       setQuote(res.data.quote)
     })
   };  
+
+  useEffect(() => {
+    getData()
+  }, []);
 
   return (
     <div className="App" style={{background: 'url(https://picsum.photos/700/?blur=3)'}}>

@@ -1,13 +1,14 @@
 const axios  = require("axios");
 
-const getQuote = axios.get("https://officeapi.dev/api/quotes/random")
-  .then(response => {
-    // console.log(response.data.data)
-    console.log("helper hit")
-    return response.data.data;
-  })
-  .catch(error => {
-    console.log(error);
-  });  
+async function getQuote() {
+  try {
+    const res = await axios.get("https://officeapi.dev/api/quotes/random")
+    return res;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+   
 
 module.exports = { getQuote }
