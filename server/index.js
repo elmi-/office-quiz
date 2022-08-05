@@ -1,8 +1,9 @@
 // server/index.js
 const express = require("express");
-const { getQuote, getCharecters } = require("./helpers");
+const { getQuote, getCharecters, getQuiz } = require("./helpers");
 const cors = require("cors");
 const { default: axios } = require("axios");
+const { response } = require("express");
 
 const PORT = process.env.PORT || 3001;
 
@@ -22,6 +23,16 @@ app.get("/api/characters", (req, res) => {
     res.json({ randomCharacter: response.data.data })
   })
 });
+
+app.get("/api/quiz", (req, res) => {
+  const quizPromise = getQuiz();
+  quizPromise.then(
+    axios.spread(({data: quote}, {data: characterA}, {data: characterB}, {data: characterC}) => {
+      // console.log({ quote, characterA, characterB, characterC});
+      res.json({ quote, characterA, characterB, characterC })
+    })
+  );
+})
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

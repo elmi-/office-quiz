@@ -22,6 +22,12 @@ function Game() {
     .then(res => {
       setCharacters(res.data.randomCharacter)
     })
+
+    // axios.get("/api/quiz")
+    // .then(res => {
+    //   console.log("quiz")
+    //   // setQuote(res.data.quote)
+    // });
   };  
 
   useEffect(() => {
