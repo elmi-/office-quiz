@@ -48,16 +48,23 @@ function Game() {
         
         </h1>
       </div>
-      <div id="game-header-item">
+      <div id="game-header-item" class="score">
         <p class="game-header-prefix">
-          Score
+          Wins
         </p>
         <h1 class="game-header-main-text" id="score">
-          0
+          { wins }
+        </h1>
+        <p class="game-header-prefix">
+          Losses
+        </p>
+        <h1 class="game-header-main-text" id="score">
+          { losses }
         </h1>
       </div>
+      
     </div>
-    <p>Wins: { wins } | Loses: { losses }</p>
+    {/* <p>Wins: { wins } | Loses: { losses }</p> */}
     <h2 id="question">{!quote ? "Loading..." : quote.content}</h2>
     <div class="choice-container" onClick={() => validateAnser("good")}>
       <p class="choice-prefix">A</p>
