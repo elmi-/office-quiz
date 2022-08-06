@@ -5,7 +5,9 @@ import "./game.css";
 
 function Game() {
   const [quote, setQuote] = useState(null);
-  const [characters, setCharacters] = useState(null);
+  const [charactersA, setCharactersA] = useState(null);
+  const [charactersB, setCharactersB] = useState(null);
+  const [charactersC, setCharactersC] = useState(null);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
 
@@ -16,10 +18,53 @@ function Game() {
     .then(res => {
       console.log(res.data.characterA)
       setQuote(res.data.quote.data)
-      // TODO: set answer component to randomize selections and answer
-      setCharacters(res.data.characterA.data)
+      setCharactersA(res.data.characterA.data)
+      setCharactersB(res.data.characterB.data)
+      setCharactersC(res.data.characterC.data)
     });
   };  
+
+  function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
+  const renderShuffledOptions = function() {
+    let choices = [quote.character.firstname + " " + quote.character.lastname, charactersA.firstname + " " + charactersA.lastname, charactersB.firstname + " " + charactersB.lastname, charactersC.firstname + " " + charactersC.lastname]
+
+    const randomOptions = shuffle(choices);
+
+    return (
+      <div>
+        <div class="choice-container" onClick={() => validateAnser("good")}>
+          <p class="choice-prefix">A</p>
+          <p class="choice-text" data-number="1">{ randomOptions[0] }</p>
+        </div>
+        <div class="choice-container" onClick={() => validateAnser("good")}>
+          <p class="choice-prefix">B</p>
+          <p class="choice-text" data-number="1">{ randomOptions[1] }</p>
+        </div>
+        <div class="choice-container" onClick={() => validateAnser("good")}>
+          <p class="choice-prefix">C</p>
+          <p class="choice-text" data-number="1">{ randomOptions[2] }</p>
+        </div>
+        <div class="choice-container" onClick={() => validateAnser("good")}>
+          <p class="choice-prefix">D</p>
+          <p class="choice-text" data-number="1">{ randomOptions[3] }</p>
+        </div>
+      </div>
+      
+    );
+  }
 
   useEffect(() => {
     getData();
@@ -54,14 +99,16 @@ function Game() {
           </div>
       </div>
       <h2 id="question">{!quote ? "Loading..." : quote.content}</h2>
-      <div class="choice-container" onClick={() => validateAnser("good")}>
+      <p>{quote.character.firstname}</p>
+      { renderShuffledOptions() }
+      {/* <div class="choice-container" onClick={() => validateAnser("good")}>
         <p class="choice-prefix">A</p>
         <p class="choice-text" data-number="1">{!quote ? "Start" : quote.character.firstname + " " + quote.character.lastname}</p>
       </div>
       <div class="choice-container" onClick={() => validateAnser("bad")}>
         <p class="choice-prefix">B</p>
-        <p class="choice-text" data-number="2">{!characters ? "Start" : characters.firstname + " " + characters.lastname}</p>
-      </div>
+        <p class="choice-text" data-number="2">{!charactersA ? "Start" : charactersA.firstname + " " + charactersA.lastname}</p>
+      </div> */}
   </div>
   );
 }
