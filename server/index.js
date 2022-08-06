@@ -28,10 +28,9 @@ app.get("/api/quiz", (req, res) => {
   const quizPromise = getQuiz();
   quizPromise.then(
     axios.spread(({data: quote}, {data: characterA}, {data: characterB}, {data: characterC}) => {
-      // console.log({ quote, characterA, characterB, characterC});
       res.json({ quote, characterA, characterB, characterC })
     })
-  );
+  )
 })
 
 app.listen(PORT, () => {

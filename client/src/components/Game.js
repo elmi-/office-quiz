@@ -12,22 +12,13 @@ function Game() {
   const choices = Array.from(document.getElementsByClassName("choice-text"));
 
   const getData = function() {
-    axios.get("/api/quote")
+    axios.get("/api/quiz")
     .then(res => {
-      console.log("get data")
-      setQuote(res.data.quote)
+      console.log(res.data.characterA)
+      setQuote(res.data.quote.data)
+      // TODO: set answer component to randomize selections and answer
+      setCharacters(res.data.characterA.data)
     });
-
-    axios.get("api/characters")
-    .then(res => {
-      setCharacters(res.data.randomCharacter)
-    })
-
-    // axios.get("/api/quiz")
-    // .then(res => {
-    //   console.log("quiz")
-    //   // setQuote(res.data.quote)
-    // });
   };  
 
   useEffect(() => {
