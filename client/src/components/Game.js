@@ -48,19 +48,23 @@ function Game() {
 
     const randomOptions = shuffle(choices);
     const alphaArr = ["A", "B", "C", "D"]
+    let alphaArrIndex = 0;
     return (
       <div>
         { randomOptions.map(option => {
+          
           return (
             <div class="choice-container" onClick={() => validateAnser(option.result)}>
-            {/* <p class="choice-prefix">A</p> */}
+            <p class="choice-prefix">{ alphaArr[alphaArrIndex] }</p>
             <p class="choice-text" data-number="1">{ option.val }</p>
+            <div class="hidden">{ alphaArrIndex++ }</div>
           </div>
+          
           )
         })}
       </div>
     );
-
+    
   }
 
   useEffect(() => {
@@ -96,8 +100,6 @@ function Game() {
           </div>
       </div>
       <h2 id="question">{!quote ? "Loading..." : quote.content}</h2>
-      {/* below: for testing answers */}
-      <p>{ quote.character.firstname + quote.character.lastname }</p>
       { renderShuffledOptions() }
   </div>
   );
