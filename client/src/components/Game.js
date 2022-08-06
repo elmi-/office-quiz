@@ -11,8 +11,6 @@ function Game() {
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
 
-  const choices = Array.from(document.getElementsByClassName("choice-text"));
-
   const getData = function() {
     axios.get("/api/quiz")
     .then(res => {
@@ -56,7 +54,7 @@ function Game() {
           return (
             <div class="choice-container" onClick={() => validateAnser(option.result)}>
             <p class="choice-prefix">{ alphaArr[alphaArrIndex] }</p>
-            <p class="choice-text" data-number="1">{ option.val }</p>
+            <p class="choice-text" data-result={ option.result }>{ option.val }</p>
             <div class="hidden">{ alphaArrIndex++ }</div>
           </div>
           
@@ -64,7 +62,6 @@ function Game() {
         })}
       </div>
     );
-    
   }
 
   useEffect(() => {
@@ -77,6 +74,7 @@ function Game() {
       getData();
       return;
     }
+
     setLosses(losses + 1)
     getData();
   }
