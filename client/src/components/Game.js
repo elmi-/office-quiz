@@ -64,7 +64,7 @@ function Game() {
     const alphaArr = ["A", "B", "C", "D"]
     let alphaArrIndex = 0;
     return (
-      <div>
+      <div class="choice-parent">
         { randomOptions.map(option => {
           return (
             <div class="choice-container" onClick={() => validateAnser(option.result)}>

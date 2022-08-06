@@ -30,7 +30,7 @@ h1 > span {
 }
 
 h2 {
-  font-size: 4.2rem;
+  font-size: 2.8rem;
   margin: 0 0 4rem 0;
   font-weight: 700;
 }
@@ -39,10 +39,13 @@ h3 {
   font-size: 2.8rem;
   font-weight: 800;
 }
-
+.logo {
+  display: block;
+  margin: 0 auto;
+}
 .container {
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
