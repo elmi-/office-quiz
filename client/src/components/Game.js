@@ -11,6 +11,8 @@ function Game() {
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
 
+  const choices = Array.from(document.getElementsByClassName("choice-text"));
+
   const getData = function() {
     axios.get("/api/quiz")
     .then(res => {
@@ -36,6 +38,20 @@ function Game() {
     return array;
   }
 
+  // choices.forEach(choice => {
+  //   choice.addEventListener("click", e => {
+  //     const selectedChoice = e.target;
+  //     const selectedAnswer = selectedChoice.dataset.result;
+  //     const classToApply = selectedAnswer === "good" ? "correct" : "incorrect";
+  //     debugger
+  //     selectedChoice.parentElement.classList.add(classToApply);
+  
+  //     setTimeout(() => {
+  //       selectedChoice.parentElement.classList.remove(classToApply);
+  //     }, 1000)
+  //   })
+  // });
+
   const renderShuffledOptions = function() {
     let choices = [
       { val: quote.character.firstname + " " + quote.character.lastname, result: "good" },
@@ -50,14 +66,12 @@ function Game() {
     return (
       <div>
         { randomOptions.map(option => {
-          
           return (
             <div class="choice-container" onClick={() => validateAnser(option.result)}>
             <p class="choice-prefix">{ alphaArr[alphaArrIndex] }</p>
             <p class="choice-text" data-result={ option.result }>{ option.val }</p>
             <div class="hidden">{ alphaArrIndex++ }</div>
           </div>
-          
           )
         })}
       </div>
@@ -68,13 +82,13 @@ function Game() {
     getData();
   }, []);
 
-  const validateAnser = function(value) {
+  const validateAnser = function(value, obj) {
     if(value === "good") {
+      debugger;
       setWins(wins+ 1)
       getData();
       return;
     }
-
     setLosses(losses + 1)
     getData();
   }
