@@ -50,22 +50,14 @@ function Game() {
     const alphaArr = ["A", "B", "C", "D"]
     return (
       <div>
-        <div class="choice-container" onClick={() => validateAnser(randomOptions[0].result)}>
-          {/* <p class="choice-prefix">A</p> */}
-          <p class="choice-text" data-number="1">{ randomOptions[0].val }</p>
-        </div>
-        <div class="choice-container" onClick={() => validateAnser(randomOptions[1].result)}>
-          {/* <p class="choice-prefix">B</p> */}
-          <p class="choice-text" data-number="1">{ randomOptions[1].val }</p>
-        </div>
-        <div class="choice-container" onClick={() => validateAnser(randomOptions[2].result)}>
-          {/* <p class="choice-prefix">C</p> */}
-          <p class="choice-text" data-number="1">{ randomOptions[2].val }</p>
-        </div>
-        <div class="choice-container" onClick={() => validateAnser(randomOptions[3].result)}>
-          {/* <p class="choice-prefix">D</p> */}
-          <p class="choice-text" data-number="1">{ randomOptions[3].val }</p>
-        </div>
+        { randomOptions.map(option => {
+          return (
+            <div class="choice-container" onClick={() => validateAnser(option.result)}>
+            {/* <p class="choice-prefix">A</p> */}
+            <p class="choice-text" data-number="1">{ option.val }</p>
+          </div>
+          )
+        })}
       </div>
     );
 
@@ -107,14 +99,6 @@ function Game() {
       {/* below: for testing answers */}
       <p>{ quote.character.firstname + quote.character.lastname }</p>
       { renderShuffledOptions() }
-      {/* <div class="choice-container" onClick={() => validateAnser("good")}>
-        <p class="choice-prefix">A</p>
-        <p class="choice-text" data-number="1">{!quote ? "Start" : quote.character.firstname + " " + quote.character.lastname}</p>
-      </div>
-      <div class="choice-container" onClick={() => validateAnser("bad")}>
-        <p class="choice-prefix">B</p>
-        <p class="choice-text" data-number="2">{!charactersA ? "Start" : charactersA.firstname + " " + charactersA.lastname}</p>
-      </div> */}
   </div>
   );
 }
