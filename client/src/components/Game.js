@@ -14,7 +14,7 @@ function Game() {
   const getData = function() {
     axios.get("/api/quiz")
     .then(res => {
-      debugger;
+      // debugger;
       console.log(res.data.characterA)
       setQuote(res.data.quote.data)
       setCharactersA(res.data.characterA.data)
@@ -72,7 +72,7 @@ function Game() {
 
   const validateAnser = function(value, obj) {
     if(value === "good") {
-      debugger;
+      // debugger;
       setWins(wins+ 1)
       getData();
       return;

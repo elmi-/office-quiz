@@ -8,7 +8,15 @@
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
-  color: #333;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;    
+  flex-direction: column;
+  align-items: center;
 }
 
 h1,
@@ -39,19 +47,20 @@ h3 {
   font-size: 2.8rem;
   font-weight: 800;
 }
+
 .logo {
-  display: block;
-  margin: 0 auto;
+
 }
 .container {
   width: 100vw;
   /* height: 100vh; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   max-width: 80rem;
   margin: 0 auto;
   padding: 2rem;
+  flex: 1 0 auto;
 }
 
 .container > * {
@@ -130,4 +139,40 @@ input {
 
 input::placeholder {
   color: #aaa;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 2rem;
+  background: #353b48;
+  color: #fff;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.footer a {
+  color: #fff;
+  padding: 0.2rem 0;
+}
+
+.footer .contacts {
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media (max-width:320px)  {
+  body {
+    align-items: normal;
+  }
+}
+@media (max-width:480px)  { 
+  body {
+    align-items: normal;
+  }
 }
