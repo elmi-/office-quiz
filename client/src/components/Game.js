@@ -16,6 +16,7 @@ function Game() {
   const getData = function() {
     axios.get("/api/quiz")
     .then(res => {
+      debugger;
       console.log(res.data.characterA)
       setQuote(res.data.quote.data)
       setCharactersA(res.data.characterA.data)
@@ -53,12 +54,15 @@ function Game() {
   // });
 
   const renderShuffledOptions = function() {
-    let choices = [
-      { val: quote.character.firstname + " " + quote.character.lastname, result: "good" },
-      { val: charactersA.firstname + " " + charactersA.lastname, result: "bad" },
-      { val: charactersB.firstname + " " + charactersB.lastname, result: "bad" },
-      { val: charactersC.firstname + " " + charactersC.lastname,  result: "bad"}
-    ]
+    let choices = [];
+    if(quote && charactersA && charactersB && charactersC) {
+     choices = [
+        { val: quote.character.firstname + " " + quote.character.lastname, result: "good" },
+        { val: charactersA.firstname + " " + charactersA.lastname, result: "bad" },
+        { val: charactersB.firstname + " " + charactersB.lastname, result: "bad" },
+        { val: charactersC.firstname + " " + charactersC.lastname,  result: "bad"}
+      ]
+    }
 
     const randomOptions = shuffle(choices);
     const alphaArr = ["A", "B", "C", "D"]
@@ -77,7 +81,7 @@ function Game() {
       </div>
     );
   }
-
+  
   useEffect(() => {
     getData();
   }, []);
@@ -93,8 +97,9 @@ function Game() {
     getData();
   }
 
+
   return ( 
-      <div id="game" class="flex-center flex-column">
+    <div id="game" class="flex-center flex-column">
         <div id="game-header">
           <div id="game-header-item" class="score">
             <p class="game-header-prefix">
@@ -111,7 +116,8 @@ function Game() {
             </h1>
           </div>
       </div>
-      <h2 id="question">{!quote ? "Loading..." : quote.content}</h2>
+    
+      <h2 id="question">{!quote ? "loading" : quote.content}</h2>
       { renderShuffledOptions() }
   </div>
   );
