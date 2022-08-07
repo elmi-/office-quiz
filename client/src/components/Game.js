@@ -39,20 +39,6 @@ function Game() {
     return array;
   }
 
-  // choices.forEach(choice => {
-  //   choice.addEventListener("click", e => {
-  //     const selectedChoice = e.target;
-  //     const selectedAnswer = selectedChoice.dataset.result;
-  //     const classToApply = selectedAnswer === "good" ? "correct" : "incorrect";
-  //     debugger
-  //     selectedChoice.parentElement.classList.add(classToApply);
-  
-  //     setTimeout(() => {
-  //       selectedChoice.parentElement.classList.remove(classToApply);
-  //     }, 1000)
-  //   })
-  // });
-
   const renderShuffledOptions = function() {
     let choices = [];
     if(quote && charactersA && charactersB && charactersC) {
