@@ -11,8 +11,6 @@ function Game() {
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
 
-  const choices = Array.from(document.getElementsByClassName("choice-text"));
-
   const getData = function() {
     axios.get("/api/quiz")
     .then(res => {
