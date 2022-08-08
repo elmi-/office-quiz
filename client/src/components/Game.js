@@ -3,14 +3,17 @@ import { useState, useEffect } from "react";
 import { shuffle } from "../helpers/helpers";
 import axios from 'axios';
 import "./game.css";
+import Score from "./Score";
 
-function Game() {
+const Game = function() {
   const [quote, setQuote] = useState(null);
   const [charactersA, setCharactersA] = useState(null);
   const [charactersB, setCharactersB] = useState(null);
   const [charactersC, setCharactersC] = useState(null);
-  const [wins, setWins] = useState(0);
-  const [losses, setLosses] = useState(0);
+  const [score, setScore] = useState({
+    wins: 0,
+    losses: 0
+  })
 
   const getData = function() {
     axios.get("/api/quiz")
@@ -34,8 +37,10 @@ function Game() {
     }
 
     const randomOptions = shuffle(choices);
+    
     const alphaArr = ["A", "B", "C", "D"]
     let alphaArrIndex = 0;
+
     return (
       <div class="choice-parent">
         { randomOptions.map(option => {
@@ -57,11 +62,17 @@ function Game() {
 
   const validateAnser = function(value, obj) {
     if(value === "good") {
-      setWins(wins+ 1)
+      setScore({
+        wins: score.wins+1,
+        losses: score.losses
+      })
       getData();
       return;
     }
-    setLosses(losses + 1)
+    setScore({
+      losses: score.losses+1,
+      wins: score.wins
+    })
     getData();
   }
 
@@ -69,20 +80,7 @@ function Game() {
   return ( 
     <div id="game" class="flex-center flex-column">
         <div id="game-header">
-          <div id="game-header-item" class="score">
-            <p class="game-header-prefix">
-              Wins
-            </p>
-            <h1 class="game-header-main-text" id="score">
-              { wins }
-            </h1>
-            <p class="game-header-prefix">
-              Losses
-            </p>
-            <h1 class="game-header-main-text" id="score">
-              { losses }
-            </h1>
-          </div>
+          <Score wins={score.wins} losses={score.losses} onScoreChange={ setScore } />
       </div>
     
       <h2 id="question">{!quote ? "loading" : quote.content}</h2>
