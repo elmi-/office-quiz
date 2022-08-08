@@ -7,7 +7,7 @@ const handleScoreChange = useCallback((val) => {
 }, [onScoreChange]);
 
 return (
-  <div onChange={ handleScoreChange }>
+  <div id="game-header" onChange={ handleScoreChange }>
     <div id="game-header-item" class="score">
       <p class="game-header-prefix">
         Wins

@@ -1,9 +1,8 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { shuffle } from "../helpers/helpers";
+import { React, useState, useEffect } from "react";
+import { shuffle, fullNameFormatter } from "../helpers/helpers";
 import axios from 'axios';
-import "./game.css";
 import Score from "./Score";
+import "./game.css";
 
 const Game = function() {
   const [quote, setQuote] = useState(null);
@@ -29,10 +28,10 @@ const Game = function() {
     let choices = [];
     if(quote && charactersA && charactersB && charactersC) {
      choices = [
-        { val: quote.character.firstname + " " + quote.character.lastname, result: "good" },
-        { val: charactersA.firstname + " " + charactersA.lastname, result: "bad" },
-        { val: charactersB.firstname + " " + charactersB.lastname, result: "bad" },
-        { val: charactersC.firstname + " " + charactersC.lastname,  result: "bad"}
+        { val: fullNameFormatter(quote.character.firstname, quote.character.lastname), result: "good" },
+        { val: fullNameFormatter(charactersA.firstname, charactersA.lastname), result: "bad" },
+        { val: fullNameFormatter(charactersB.firstname, charactersB.lastname), result: "bad" },
+        { val: fullNameFormatter(charactersC.firstname, charactersC.lastname),  result: "bad"}
       ]
     }
 
@@ -78,11 +77,8 @@ const Game = function() {
 
 
   return ( 
-    <div id="game" class="flex-center flex-column">
-        <div id="game-header">
-          <Score wins={score.wins} losses={score.losses} onScoreChange={ setScore } />
-      </div>
-    
+    <div id="game" class="flex-center flex-column">  
+      <Score wins={score.wins} losses={score.losses} onScoreChange={ setScore } />
       <h2 id="question">{!quote ? "loading" : quote.content}</h2>
       { renderShuffledOptions() }
   </div>

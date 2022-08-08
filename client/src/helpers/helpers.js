@@ -1,4 +1,4 @@
-export function shuffle(array) {
+export const shuffle = function(array) {
   let currentIndex = array.length,  randomIndex;
 
   while (currentIndex != 0) {
@@ -10,4 +10,9 @@ export function shuffle(array) {
   }
 
   return array;
+}
+
+export const fullNameFormatter = function(firstName = "", lastName = "") {
+  const fullName = `${firstName} ${lastName}`;
+  return fullName;    
 }
