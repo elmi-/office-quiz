@@ -20,7 +20,7 @@ async function getCharecters() {
   }
 }
 
-function getQuiz() {
+async function getQuiz() {
   let endpoints = [
     'https://officeapi.dev/api/quotes/random',
     'https://officeapi.dev/api/characters/random',
@@ -28,7 +28,7 @@ function getQuiz() {
     'https://officeapi.dev/api/characters/random',
   ];
   
-  return axios.all(endpoints.map((endpoint) => axios.get(endpoint)))
+  return await axios.all(endpoints.map((endpoint) => axios.get(endpoint)))
 }
 
 module.exports = { getQuote, getCharecters, getQuiz }

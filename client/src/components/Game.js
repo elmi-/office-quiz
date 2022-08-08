@@ -9,6 +9,16 @@ const Game = function() {
   const [charactersA, setCharactersA] = useState(null);
   const [charactersB, setCharactersB] = useState(null);
   const [charactersC, setCharactersC] = useState(null);
+
+  //TODO: clean quiz to one useState operation
+  const [quiz, setQuiz] = useState({
+    quote: null,
+    quoteCharacter: null,
+    charA: null,
+    charB: null,
+    charC: null
+  })
+
   const [score, setScore] = useState({
     wins: 0,
     losses: 0
@@ -59,7 +69,7 @@ const Game = function() {
     getData();
   }, []);
 
-  const validateAnser = function(value, obj) {
+  const validateAnser = function(value) {
     if(value === "good") {
       setScore({
         wins: score.wins+1,
