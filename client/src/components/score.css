@@ -1,0 +1,25 @@
+/* GAME HEADER */
+#game-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#game-header-item {
+  display: flex;
+  align-items: center;
+}
+
+.game-header-prefix {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.game-header-main-text {
+  text-align: center;
+  margin: 0;
+}
+
+#score {
+  margin: 0 1.5rem
+}

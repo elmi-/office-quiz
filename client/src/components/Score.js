@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import "./score.css"
 
 const Score = function({ wins, losses, onScoreChange }) {
 const handleScoreChange = useCallback((val) => {
