@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { shuffle } from "../helpers/helpers";
 import axios from 'axios';
 import "./game.css";
 
@@ -14,28 +15,12 @@ function Game() {
   const getData = function() {
     axios.get("/api/quiz")
     .then(res => {
-      // debugger;
-      console.log(res.data.characterA)
       setQuote(res.data.quote.data)
       setCharactersA(res.data.characterA.data)
       setCharactersB(res.data.characterB.data)
       setCharactersC(res.data.characterC.data)
     });
   };  
-
-  function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
-  
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-  
-    return array;
-  }
 
   const renderShuffledOptions = function() {
     let choices = [];
@@ -72,7 +57,6 @@ function Game() {
 
   const validateAnser = function(value, obj) {
     if(value === "good") {
-      // debugger;
       setWins(wins+ 1)
       getData();
       return;

@@ -13,7 +13,7 @@
 
 .choice-container:hover {
   cursor: pointer;
-  box-shadow: 0 0.4rem 1.4rem 0 rgba(99, 110, 114,1.0);
+  box-shadow: 0px 0.1rem 0.5rem 0 rgb(99 110 114);
   transform: translateY(-0.1rem);
   transition: 150ms;
 }
