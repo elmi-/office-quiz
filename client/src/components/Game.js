@@ -5,18 +5,11 @@ import Score from "./Score";
 import "./game.css";
 
 const Game = function() {
-  const [quote, setQuote] = useState(null);
-  const [charactersA, setCharactersA] = useState(null);
-  const [charactersB, setCharactersB] = useState(null);
-  const [charactersC, setCharactersC] = useState(null);
-
-  //TODO: clean quiz to one useState operation
   const [quiz, setQuiz] = useState({
     quote: null,
-    quoteCharacter: null,
-    charA: null,
-    charB: null,
-    charC: null
+    characterA: null,
+    characterB: null,
+    characterC: null
   })
 
   const [score, setScore] = useState({
@@ -24,24 +17,27 @@ const Game = function() {
     losses: 0
   })
 
-  const getData = function() {
-    axios.get("/api/quiz")
+  const getData = async function() {
+    await axios.get("/api/quiz")
     .then(res => {
-      setQuote(res.data.quote.data)
-      setCharactersA(res.data.characterA.data)
-      setCharactersB(res.data.characterB.data)
-      setCharactersC(res.data.characterC.data)
+      setQuiz((prev) => ({
+        ...prev,
+        quote: res.data.quote.data,
+        characterA: res.data.characterA.data,
+        characterB: res.data.characterB.data,
+        characterC: res.data.characterC.data
+      }))
     });
   };  
 
   const renderShuffledOptions = function() {
     let choices = [];
-    if(quote && charactersA && charactersB && charactersC) {
+    if(quiz.quote && quiz.characterA && quiz.characterB && quiz.characterC) {
      choices = [
-        { val: fullNameFormatter(quote.character.firstname, quote.character.lastname), result: "good" },
-        { val: fullNameFormatter(charactersA.firstname, charactersA.lastname), result: "bad" },
-        { val: fullNameFormatter(charactersB.firstname, charactersB.lastname), result: "bad" },
-        { val: fullNameFormatter(charactersC.firstname, charactersC.lastname),  result: "bad"}
+        { val: fullNameFormatter(quiz.quote.character.firstname, quiz.quote.character.lastname), result: "good" },
+        { val: fullNameFormatter(quiz.characterA.firstname, quiz.characterA.lastname), result: "bad" },
+        { val: fullNameFormatter(quiz.characterB.firstname, quiz.characterB.lastname), result: "bad" },
+        { val: fullNameFormatter(quiz.characterC.firstname, quiz.characterC.lastname),  result: "bad"}
       ]
     }
 
@@ -67,7 +63,7 @@ const Game = function() {
   
   useEffect(() => {
     getData();
-  }, []);
+  }, [score]);
 
   const validateAnser = function(value) {
     if(value === "good") {
@@ -75,21 +71,19 @@ const Game = function() {
         wins: score.wins+1,
         losses: score.losses
       })
-      getData();
       return;
     }
     setScore({
       losses: score.losses+1,
       wins: score.wins
     })
-    getData();
   }
 
 
   return ( 
     <div id="game" class="flex-center flex-column">  
       <Score wins={score.wins} losses={score.losses} onScoreChange={ setScore } />
-      <h2 id="question">{!quote ? "loading" : quote.content}</h2>
+      <h2 id="question">{ !quiz.quote ? "loading" : quiz.quote.content }</h2>
       { renderShuffledOptions() }
   </div>
   );
