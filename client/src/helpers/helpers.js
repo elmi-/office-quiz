@@ -16,3 +16,17 @@ export const fullNameFormatter = function(firstName = "", lastName = "") {
   const fullName = `${firstName} ${lastName}`;
   return fullName;    
 }
+
+export const validateAnser = function(value, score, setScore) {
+  if(value === "good") {
+    setScore({
+      wins: score.wins+1,
+      losses: score.losses
+    })
+    return;
+  }
+  setScore({
+    losses: score.losses+1,
+    wins: score.wins
+  })
+}

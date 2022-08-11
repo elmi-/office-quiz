@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { shuffle, fullNameFormatter } from "../helpers/helpers";
+import { shuffle, fullNameFormatter, validateAnser } from "../helpers/helpers";
 import axios from 'axios';
 import Score from "./Score";
 import "./game.css";
@@ -53,7 +53,7 @@ const Game = function() {
       <div class="choice-parent">
         { randomOptions.map(option => {
           return (
-            <div class="choice-container" onClick={() => validateAnser(option.result)}>
+            <div class="choice-container" onClick={() => validateAnser(option.result, score, setScore)}>
             <p class="choice-prefix">{ alphaArr[alphaArrIndex] }</p>
             <p class="choice-text" data-result={ option.result }>{ option.val }</p>
             <div class="hidden">{ alphaArrIndex++ }</div>
@@ -62,20 +62,6 @@ const Game = function() {
         })}
       </div>
     );
-  }
-
-  const validateAnser = function(value) {
-    if(value === "good") {
-      setScore({
-        wins: score.wins+1,
-        losses: score.losses
-      })
-      return;
-    }
-    setScore({
-      losses: score.losses+1,
-      wins: score.wins
-    })
   }
 
   return ( 
