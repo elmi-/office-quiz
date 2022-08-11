@@ -15,20 +15,23 @@ const Game = function() {
   const [score, setScore] = useState({
     wins: 0,
     losses: 0
-  })
+  });
 
-  const getData = async function() {
-    await axios.get("/api/quiz")
-    .then(res => {
-      setQuiz((prev) => ({
-        ...prev,
-        quote: res.data.quote.data,
-        characterA: res.data.characterA.data,
-        characterB: res.data.characterB.data,
-        characterC: res.data.characterC.data
-      }))
-    });
-  };  
+  useEffect(() => {
+    async function fetchData() {
+      await axios.get("/api/quiz")
+      .then(res => {
+        setQuiz((prev) => ({
+          ...prev,
+          quote: res.data.quote.data,
+          characterA: res.data.characterA.data,
+          characterB: res.data.characterB.data,
+          characterC: res.data.characterC.data
+        }))
+      });
+    };  
+    fetchData();
+  }, [score]);
 
   const renderShuffledOptions = function() {
     let choices = [];
@@ -60,10 +63,6 @@ const Game = function() {
       </div>
     );
   }
-  
-  useEffect(() => {
-    getData();
-  }, [score]);
 
   const validateAnser = function(value) {
     if(value === "good") {
@@ -79,13 +78,12 @@ const Game = function() {
     })
   }
 
-
   return ( 
     <div id="game" class="flex-center flex-column">  
       <Score wins={score.wins} losses={score.losses} onScoreChange={ setScore } />
       <h2 id="question">{ !quiz.quote ? "loading" : quiz.quote.content }</h2>
       { renderShuffledOptions() }
-  </div>
+    </div>
   );
 }
 
