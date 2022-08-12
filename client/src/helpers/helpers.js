@@ -13,6 +13,9 @@ export const shuffle = function(array) {
 }
 
 export const fullNameFormatter = function(firstName = "", lastName = "") {
+  debugger;
+  if(lastName === "null")
+  lastName = "";
   const fullName = `${firstName} ${lastName}`;
   return fullName;    
 }
