@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "cd client && npm run build",
     "deploy": "gh-pages -d build",
     "start": "node server/index.js",
     "build": "cd client && npm install && npm run build"
