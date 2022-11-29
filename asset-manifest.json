@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.fa32e16e.css",
-    "main.js": "/static/js/main.a2134511.js",
-    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
-    "index.html": "/index.html",
-    "main.fa32e16e.css.map": "/static/css/main.fa32e16e.css.map",
-    "main.a2134511.js.map": "/static/js/main.a2134511.js.map",
-    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+    "main.css": "/office-quiz/static/css/main.fa32e16e.css",
+    "main.js": "/office-quiz/static/js/main.07af4483.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/office-quiz/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/office-quiz/index.html",
+    "main.fa32e16e.css.map": "/office-quiz/static/css/main.fa32e16e.css.map",
+    "main.07af4483.js.map": "/office-quiz/static/js/main.07af4483.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/office-quiz/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fa32e16e.css",
-    "static/js/main.a2134511.js"
+    "static/js/main.07af4483.js"
   ]
 }
